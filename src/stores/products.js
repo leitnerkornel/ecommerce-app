@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-const productsAPI = import.meta.env.VITE_PRODUCT_API
+const BASE_API_URL = import.meta.env.VITE_BASE_API_URL
 
 export const useProductsStore = defineStore('products', {
   state: () => ({ products: null }),
@@ -9,7 +9,7 @@ export const useProductsStore = defineStore('products', {
   },
   actions: {
     async fetchProducts() {
-      const productsResponse = await fetch(productsAPI)
+      const productsResponse = await fetch(`${BASE_API_URL}/products`)
       this.products = await productsResponse.json()
     }
   }

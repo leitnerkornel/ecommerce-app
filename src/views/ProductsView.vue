@@ -1,5 +1,6 @@
 <script setup>
 import { useProductsStore } from '@/stores/products.js'
+import ProductItem from '@/components/products/ProductItem.vue'
 
 const productsStore = useProductsStore()
 
@@ -11,16 +12,17 @@ if (!productsStore.getProducts) {
 <template>
   <div class="products">
     <h1>Products</h1>
-    <li v-for="item in productsStore.getProducts" :key="item.key">{{ item.name }}</li>
+    <div class="products-container">
+      <ProductItem v-for="product in productsStore.getProducts" :key="product.id" :product="product" />
+    </div>
   </div>
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .products {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: flex-start;
 }
 </style>
