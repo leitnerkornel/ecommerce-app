@@ -9,7 +9,17 @@ const cartStore = useCartStore()
 export const useProductsStore = defineStore('products', {
   state: () => ({ products: null }),
   getters: {
-    getProducts: (state) => state.products
+    getProducts: (state) => state.products,
+    getProductById: (state) => (productId) => state.products.find((item) => item.id === productId),
+    isAddToCartDisabled: (state) => (productId) => {
+      const product = state.getProductById(productId)
+      return product.availableAmount < 1
+    },
+    isQuantityDecreaseDisabled: (state) => ({ id: productId, quantityInCart }) => {
+      const product = state.getProductById(productId)
+      return product.minOrderAmount > 1 && quantityInCart === product.minOrderAmount
+
+    }
   },
   actions: {
     async fetchProducts() {
@@ -29,8 +39,21 @@ export const useProductsStore = defineStore('products', {
         this.products.splice(index, 1, modifiedProduct)
       }
     },
-    increaseStock(product, quantity) {
-
+    increaseStock(productId, quantity) {
+      const index = this.products.findIndex(item => item.id === productId)
+      if (index > -1) {
+        const productToReplace = this.products.at(index)
+        const modifiedProduct = Object.assign({}, productToReplace, { availableAmount: productToReplace.availableAmount + quantity })
+        this.products.splice(index, 1, modifiedProduct)
+      }
+    },
+    deleteNumberedFromCart(productId, quantity) {
+      this.increaseStock(productId, quantity)
+      cartStore.deleteQuantityFromCart(productId, quantity)
+    },
+    deleteProductFromCart(productId, quantityInCart) {
+      this.increaseStock(productId, quantityInCart)
+      cartStore.deleteFromCart(productId)
     }
   }
 })

@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useProductsStore } from '@/stores/products.js'
 import { useCartStore } from '@/stores/cart.js'
 
@@ -11,6 +11,12 @@ const props = defineProps({
     type: Object,
     required: true
   }
+})
+
+const isImageLoadingFailed = ref(false)
+
+const productImage = computed(() => {
+  return isImageLoadingFailed.value ? 'image-load-failed.png' : props.product.img
 })
 
 const buttonText = computed(() => {
@@ -31,7 +37,6 @@ const errorMessage = computed(() => {
   return ''
 })
 
-
 const isMinimumAmount = computed(() => props.product.minOrderAmount > 1)
 const isOutOfStock = computed(() => props.product.availableAmount === 0)
 const quantityToAdd = computed(() => cartStore.amountInCart(props.product.id) === 0 ? props.product.minOrderAmount : 1)
@@ -41,11 +46,15 @@ const isAddToCartDisabled = computed(() => !isMinimumAmountAvailable.value || is
 const addToCart = () => {
   productsStore.addProductToCart(props.product, quantityToAdd.value)
 }
+
+const onImgError = () => {
+  isImageLoadingFailed.value = true
+}
 </script>
 
 <template>
   <v-card height="360" width="250" min-width="250" elevation="2" class="d-flex flex-column align-content-space-evenly">
-    <v-img :src="props.product.img" width="250" min-height="166" max-height="166"/>
+    <v-img :src="productImage" @error="onImgError" :alt="props.product.name" width="250" min-height="166" max-height="166"/>
     <v-card-title class="text-capitalize">{{ props.product.name }}</v-card-title>
     <v-card-text class="pb-2">Quantity in stock: {{ props.product.availableAmount }}</v-card-text>
     <div class="product-item-minimum-amount-container">
