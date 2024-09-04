@@ -11,14 +11,36 @@ const totalAmountAndTotalPrice = computed(() => `${cartStore.getTotalAmountCartI
 
 <template>
   <div class="cart">
-    <div v-if="cartStore.getCartItems.length" class="text-right font-weight-bold mb-4">Total: ${{ roundedTotalPrice }}</div>
-    <div v-else class="cart-empty font-weight-bold">Your cart is empty</div>
-    <div class="cart-container">
-      <CartItem v-for="cartItem in cartStore.getCartItems" :key="cartItem.id" :cartItem="cartItem"/>
+    <div
+      v-if="cartStore.getCartItems.length"
+      class="text-right font-weight-bold mb-4"
+    >
+      Total: ${{ roundedTotalPrice }}
     </div>
-    <div v-if="cartStore.getCartItems.length" class="checkout-btn-container flex-sm-row">
+    <div
+      v-else
+      class="cart-empty font-weight-bold"
+    >
+      Your cart is empty
+    </div>
+    <div class="cart-container">
+      <CartItem
+        v-for="cartItem in cartStore.getCartItems"
+        :key="cartItem.id"
+        :cart-item="cartItem"
+      />
+    </div>
+    <div
+      v-if="cartStore.getCartItems.length"
+      class="checkout-btn-container flex-sm-row"
+    >
       <div class="ml-0 mb-5 my-sm-auto">{{ totalAmountAndTotalPrice }}</div>
-      <v-btn size="large" color="yellow">Checkout</v-btn>
+      <v-btn
+        size="large"
+        color="yellow"
+      >
+        Checkout
+      </v-btn>
     </div>
   </div>
 </template>

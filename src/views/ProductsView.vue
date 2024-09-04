@@ -12,7 +12,11 @@ if (!productsStore.getProducts) {
 <template>
   <div class="products">
     <div class="products-container">
-      <ProductItem v-for="product in productsStore.getProducts" :key="product.id" :product="product" />
+      <ProductItem
+        v-for="product in productsStore.getProducts"
+        :key="product.id"
+        :product="product"
+      />
     </div>
   </div>
 </template>

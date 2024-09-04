@@ -47,12 +47,18 @@ const onImgError = () => {
     variant="elevated"
     class="pa-0 rounded cart-list-item"
   >
-    <template v-slot:prepend>
-      <v-img height="70" width="105" :src="productImage" @error="onImgError" class="mr-2 cart-item-img" />
+    <template #prepend>
+      <v-img
+        height="70"
+        width="105"
+        :src="productImage"
+        @error="onImgError"
+        class="mr-2 cart-item-img"
+      />
     </template>
     <v-list-item-title class="font-weight-bold text-capitalize">{{ props.cartItem.name }}</v-list-item-title>
     <v-list-item-subtitle>{{ amountAndPrice }}</v-list-item-subtitle>
-    <template v-slot:append>
+    <template #append>
       <div class="mr-5 font-weight-bold disable-select">${{ totalPrice }}</div>
       <div class="buttons">
         <v-btn
@@ -103,6 +109,7 @@ const onImgError = () => {
     width: 100%;
     margin-left: 2rem;
   }
+
   .cart-list-item :deep(.v-list-item__append) {
     width: 100%;
     justify-content: flex-end;
