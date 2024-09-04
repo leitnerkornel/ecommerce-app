@@ -45,11 +45,10 @@ const onImgError = () => {
   <v-list-item
     :key="props.cartItem.id"
     variant="elevated"
-    height="70"
-    class="pa-0"
+    class="pa-0 rounded cart-list-item"
   >
     <template v-slot:prepend>
-      <v-img height="70" width="105" :src="productImage" @error="onImgError" class="mr-2" />
+      <v-img height="70" width="105" :src="productImage" @error="onImgError" class="mr-2 cart-item-img" />
     </template>
     <v-list-item-title class="font-weight-bold text-capitalize">{{ props.cartItem.name }}</v-list-item-title>
     <v-list-item-subtitle>{{ amountAndPrice }}</v-list-item-subtitle>
@@ -83,11 +82,38 @@ const onImgError = () => {
 </template>
 
 <style scoped>
+.cart-list-item {
+  height: 70px;
+}
+
+@media (max-width: 600px) {
+  .cart-list-item {
+    height: 115px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .cart-item-img {
+    display: none;
+  }
+
+  .cart-list-item >>> .v-list-item__content {
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 2rem;
+  }
+  .cart-list-item >>> .v-list-item__append {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
 .buttons {
   display: flex;
   flex-direction: row;
   width: 130px;
-  border-radius: 2px;
+  border-radius: 4px;
   box-shadow: gray 1px 1px 2px 0;
 }
 

@@ -4,6 +4,13 @@ export const useCartStore = defineStore('cart', {
   state: () => ({ cartItems: [] }),
   getters: {
     getCartItems: (state) => state.cartItems,
+    getTotalAmountCartItems: (state) => {
+      let amount = 0
+      state.cartItems.forEach((cartItem) => {
+        amount += cartItem.quantityInCart
+      })
+      return amount
+    } ,
     amountInCart: (state) => (productId) => {
       const found = state.cartItems.find((item) => item.id === productId)
       return found ? found.quantityInCart : 0

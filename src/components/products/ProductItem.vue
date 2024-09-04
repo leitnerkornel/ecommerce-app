@@ -53,8 +53,8 @@ const onImgError = () => {
 </script>
 
 <template>
-  <v-card height="360" width="250" min-width="250" elevation="2" class="d-flex flex-column align-content-space-evenly">
-    <v-img :src="productImage" @error="onImgError" :alt="props.product.name" width="250" min-height="166" max-height="166"/>
+  <v-card height="360" width="250" min-width="250" elevation="2" class="d-flex flex-column align-content-space-evenly mx-auto">
+    <v-img :src="productImage" @error="onImgError" :alt="props.product.name" width="250" min-height="167" max-height="166"/>
     <v-card-title class="text-capitalize">{{ props.product.name }}</v-card-title>
     <v-card-text class="pb-2">Quantity in stock: {{ props.product.availableAmount }}</v-card-text>
     <div class="product-item-minimum-amount-container">

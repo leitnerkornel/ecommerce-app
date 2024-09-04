@@ -11,7 +11,6 @@ if (!productsStore.getProducts) {
 
 <template>
   <div class="products">
-    <h1>Products</h1>
     <div class="products-container">
       <ProductItem v-for="product in productsStore.getProducts" :key="product.id" :product="product" />
     </div>
@@ -19,10 +18,22 @@ if (!productsStore.getProducts) {
 </template>
 
 <style>
+.products {
+  padding: 2rem;
+  min-height: calc(100vh - 10rem);
+}
+
 .products-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-  justify-content: flex-start;
+  margin: 0 auto;
+  max-width: 1450px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 50px 50px;
+}
+
+@media (max-width: 600px) {
+  .products-container {
+    gap: 30px;
+  }
 }
 </style>

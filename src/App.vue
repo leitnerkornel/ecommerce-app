@@ -1,71 +1,68 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { useCartStore } from '@/stores/cart.js'
+
+const router = useRouter()
+const cartStore = useCartStore()
+
+const goToCart = () => {
+  router.push('/cart')
+}
+
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/products">Products</RouterLink>
-        <RouterLink to="/cart">Cart</RouterLink>
-      </nav>
+    <div class="header-content-wrapper">
+      <div class="router-links">
+        <RouterLink to="/products" class="ma-auto router-btn">Products</RouterLink>
+        <RouterLink to="/cart" class="ma-auto router-btn">Cart</RouterLink>
+      </div>
+      <v-spacer></v-spacer>
+      <div class="cart-badge-container">
+        <v-badge :content="cartStore.getTotalAmountCartItems" class="ma-auto" color="yellow" @click="goToCart">
+          <v-icon color="#00005F" icon="mdi-cart" size="x-large"></v-icon>
+        </v-badge>
+      </div>
     </div>
   </header>
-
   <RouterView />
+  <footer><p class="ma-auto font-weight-medium">Copyright © 2024 e-commerce</p></footer>
 </template>
 
 <style scoped>
 header {
+  top: 0;
+  background-color: white;
+  z-index: 1;
+  position: sticky;
+  height: 5rem;
   line-height: 1.5;
-  max-height: 100vh;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.router-links {
+  height: 5rem;
+  display: flex;
+  margin-left: 2rem;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.router-btn {
+  width: 6rem;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.cart-badge-container {
+  display: flex;
+  width: 7rem;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.header-content-wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+footer {
+  height: 5rem;
+  background-color: white;
+  display: flex;
 }
 </style>

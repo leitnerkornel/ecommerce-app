@@ -10,9 +10,8 @@ const roundedTotalPrice = computed(() => Math.round(cartStore.getCartTotalPrice 
 
 <template>
   <div class="cart">
-    <h1>Cart</h1>
     <div v-if="cartStore.getCartItems.length" class="text-right font-weight-bold mb-4">Total: ${{ roundedTotalPrice }}</div>
-    <div v-else class="cart-empty">Your cart is empty</div>
+    <div v-else class="cart-empty font-weight-bold">Your cart is empty</div>
     <div class="cart-container">
       <CartItem v-for="cartItem in cartStore.getCartItems" :key="cartItem.id" :cartItem="cartItem"/>
     </div>
@@ -23,6 +22,15 @@ const roundedTotalPrice = computed(() => Math.round(cartStore.getCartTotalPrice 
 </template>
 
 <style scoped>
+.cart {
+  max-width: 1450px;
+  padding: 2rem;
+  min-height: calc(100vh - 10rem);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
 .cart-container {
   display: flex;
   flex-direction: column;
@@ -31,7 +39,7 @@ const roundedTotalPrice = computed(() => Math.round(cartStore.getCartTotalPrice 
 }
 
 .cart-empty {
-  margin-top: 150px;
+  margin: auto;
   text-align: center;
 }
 
