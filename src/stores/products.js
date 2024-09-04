@@ -23,9 +23,17 @@ export const useProductsStore = defineStore('products', {
   },
   actions: {
     async fetchProducts() {
-      const productsResponse = await fetch(`${BASE_API_URL}/products`)
-      const productsData = await productsResponse.json()
-      this.products = addUniqueIds(productsData)
+      try {
+        const productsResponse = await fetch(`${BASE_API_URL}/products`)
+        if (!productsResponse.ok) {
+          throw new Error(`Failed to fetch products for ${BASE_API_URL}`)
+        }
+
+        const productsData = await productsResponse.json()
+        this.products = addUniqueIds(productsData)
+      } catch (error) {
+        console.error(error)
+      }
     },
     addProductToCart(product, quantity) {
       cartStore.addToCart(product, quantity)

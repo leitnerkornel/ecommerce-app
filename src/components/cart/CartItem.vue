@@ -98,12 +98,12 @@ const onImgError = () => {
     display: none;
   }
 
-  .cart-list-item >>> .v-list-item__content {
+  .cart-list-item :deep(.v-list-item__content) {
     justify-content: flex-start;
     width: 100%;
     margin-left: 2rem;
   }
-  .cart-list-item >>> .v-list-item__append {
+  .cart-list-item :deep(.v-list-item__append) {
     width: 100%;
     justify-content: flex-end;
   }
