@@ -6,6 +6,7 @@ import { computed } from 'vue'
 const cartStore = useCartStore()
 
 const roundedTotalPrice = computed(() => Math.round(cartStore.getCartTotalPrice * 100) / 100)
+const totalAmountAndTotalPrice = computed(() => `${cartStore.getTotalAmountCartItems} item(s) in your cart for a total of ${roundedTotalPrice.value}`)
 </script>
 
 <template>
@@ -15,7 +16,8 @@ const roundedTotalPrice = computed(() => Math.round(cartStore.getCartTotalPrice 
     <div class="cart-container">
       <CartItem v-for="cartItem in cartStore.getCartItems" :key="cartItem.id" :cartItem="cartItem"/>
     </div>
-    <div v-if="cartStore.getCartItems.length" class="checkout-btn-container">
+    <div v-if="cartStore.getCartItems.length" class="checkout-btn-container flex-sm-row">
+      <div class="ml-0 mb-5 my-sm-auto">{{ totalAmountAndTotalPrice }}</div>
       <v-btn size="large" color="yellow">Checkout</v-btn>
     </div>
   </div>
@@ -46,6 +48,7 @@ const roundedTotalPrice = computed(() => Math.round(cartStore.getCartTotalPrice 
 .checkout-btn-container {
   margin-top: 60px;
   display: flex;
-  justify-content: end;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
