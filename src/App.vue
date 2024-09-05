@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart.js'
+import CartBadge from '@/components/cart/CartBadge.vue'
 
 const router = useRouter()
 const cartStore = useCartStore()
@@ -29,20 +30,10 @@ const goToCart = () => {
         </RouterLink>
       </div>
       <v-spacer></v-spacer>
-      <div class="cart-badge-container">
-        <v-badge
-          :content="cartStore.getTotalAmountCartItems"
-          class="ma-auto"
-          color="yellow"
-          @click="goToCart"
-        >
-          <v-icon
-            color="#00005F"
-            icon="mdi-cart"
-            size="x-large"
-          ></v-icon>
-        </v-badge>
-      </div>
+      <CartBadge
+        :total-amount="cartStore.getTotalAmountCartItems"
+        @on-click="goToCart"
+      />
     </div>
   </header>
   <RouterView />
@@ -67,11 +58,6 @@ header {
 
 .router-btn {
   width: 6rem;
-}
-
-.cart-badge-container {
-  display: flex;
-  width: 7rem;
 }
 
 .header-content-wrapper {

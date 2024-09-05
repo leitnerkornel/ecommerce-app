@@ -6,7 +6,7 @@ import { computed } from 'vue'
 const cartStore = useCartStore()
 
 const roundedTotalPrice = computed(() => Math.round(cartStore.getCartTotalPrice * 100) / 100)
-const totalAmountAndTotalPrice = computed(() => `${cartStore.getTotalAmountCartItems} item(s) in your cart for a total of ${roundedTotalPrice.value}`)
+const totalAmountAndTotalPrice = computed(() => `${cartStore.getTotalAmountCartItems} item(s) in your cart for a total of $${roundedTotalPrice.value}`)
 </script>
 
 <template>
