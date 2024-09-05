@@ -4,8 +4,6 @@ import { addUniqueIds } from '@/utils/utils.js'
 
 const BASE_API_URL = import.meta.env.VITE_BASE_API_URL
 
-const cartStore = useCartStore()
-
 export const useProductsStore = defineStore('products', {
   state: () => ({ products: null }),
   getters: {
@@ -36,6 +34,7 @@ export const useProductsStore = defineStore('products', {
       }
     },
     addProductToCart(product, quantity) {
+      const cartStore = useCartStore()
       cartStore.addToCart(product, quantity)
       this.decreaseStock(product.id, quantity)
     },
@@ -57,10 +56,12 @@ export const useProductsStore = defineStore('products', {
     },
     deleteNumberedFromCart(productId, quantity) {
       this.increaseStock(productId, quantity)
+      const cartStore = useCartStore()
       cartStore.deleteQuantityFromCart(productId, quantity)
     },
     deleteProductFromCart(productId, quantityInCart) {
       this.increaseStock(productId, quantityInCart)
+      const cartStore = useCartStore()
       cartStore.deleteFromCart(productId)
     }
   }
