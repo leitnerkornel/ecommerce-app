@@ -91,6 +91,7 @@ const onImgError = () => {
       <v-btn
         :disabled="isAddToCartDisabled"
         variant="tonal"
+        class="disable-double-tap-zoom"
         color="blue"
         @click="addToCart"
       >

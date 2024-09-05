@@ -37,7 +37,7 @@ const goToCart = () => {
     </div>
   </header>
   <RouterView />
-  <footer><p class="ma-auto font-weight-medium">Copyright © 2024 e-commerce</p></footer>
+  <footer><p class="ma-auto font-weight-medium text-black">Copyright © 2024 e-commerce</p></footer>
 </template>
 
 <style scoped>

@@ -39,6 +39,12 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
+#### Build and Preview the app on local network ***(Open via Phone)***
+
+```sh
+npm run host
+```
+
 #### Compile and Hot-Reload for Development
 
 ```sh

@@ -23,3 +23,6 @@ a:hover {
   color: #00539F;
 }
 
+.disable-double-tap-zoom {
+  touch-action: manipulation;
+}

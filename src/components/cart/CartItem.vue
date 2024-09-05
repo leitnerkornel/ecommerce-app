@@ -62,6 +62,7 @@ const onImgError = () => {
       <div class="mr-5 font-weight-bold disable-select">${{ totalPrice }}</div>
       <div class="buttons">
         <v-btn
+          class="disable-double-tap-zoom"
           color="red-lighten-1"
           icon="mdi-minus"
           variant="text"
@@ -70,6 +71,7 @@ const onImgError = () => {
         ></v-btn>
         <div class="ma-auto font-weight-bold disable-select">{{ props.cartItem.quantityInCart }}</div>
         <v-btn
+          class="disable-double-tap-zoom"
           color="blue"
           icon="mdi-plus"
           variant="text"
@@ -78,6 +80,7 @@ const onImgError = () => {
         ></v-btn>
       </div>
       <v-btn
+        class="disable-double-tap-zoom"
         color="red-lighten-1"
         icon="mdi-delete"
         variant="text"

@@ -13,13 +13,13 @@ const totalAmountAndTotalPrice = computed(() => `${cartStore.getTotalAmountCartI
   <div class="cart">
     <div
       v-if="cartStore.getCartItems.length"
-      class="text-right font-weight-bold mb-4"
+      class="text-right font-weight-bold mb-4 text-black"
     >
       Total: ${{ roundedTotalPrice }}
     </div>
     <div
       v-else
-      class="cart-empty font-weight-bold"
+      class="cart-empty font-weight-bold text-black"
     >
       Your cart is empty
     </div>
@@ -34,8 +34,9 @@ const totalAmountAndTotalPrice = computed(() => `${cartStore.getTotalAmountCartI
       v-if="cartStore.getCartItems.length"
       class="checkout-btn-container flex-sm-row"
     >
-      <div class="ml-0 mb-5 my-sm-auto">{{ totalAmountAndTotalPrice }}</div>
+      <div class="ml-0 mb-5 my-sm-auto text-black">{{ totalAmountAndTotalPrice }}</div>
       <v-btn
+        class="disable-double-tap-zoom"
         size="large"
         color="yellow"
       >
