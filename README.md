@@ -12,11 +12,12 @@ The app developed with Vue.js 3 framework, using JS. Pinia as state manager and 
 
 Vuetify components and styles are responsible for a clean design when a UI expert missing from the board.
 
-![products](https://github.com/user-attachments/assets/04881d20-6883-479c-bcae-3f5f17be4234)
+![Products](https://github.com/user-attachments/assets/f398c208-db38-45ab-8a15-2b012087501e)
+
 
 ### How to use?
 
-![image](https://github.com/user-attachments/assets/15006d25-ae79-4c1b-930d-13d736f55255)
+![How to use](https://github.com/user-attachments/assets/15006d25-ae79-4c1b-930d-13d736f55255)
 
 ---
 ### Technical instructions
