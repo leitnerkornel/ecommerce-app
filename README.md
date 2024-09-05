@@ -40,7 +40,9 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-#### Build and Preview the app on local network ***(Open via Phone)***
+#### Build and Preview the app on local network ***(Open via Phone)*** ![Smartphone](https://github.com/user-attachments/assets/5f1927e0-a679-403a-993a-e41672b9ada0)
+
+
 
 ```sh
 npm run host
